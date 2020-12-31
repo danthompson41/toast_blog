@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+window.componentPath = "/about.js";
+window.wrapperComponentPath = "/src/page-wrapper.js";
+window.dataPath = "/about.json";
+</script>
+<html >
+  <head>
+  <title data-react-helmet="true"></title>
+  
+  <link data-react-helmet="true" rel="stylesheet" href="/styles.css"/>
+  </head>
+  <body >
+    <div id="toast-page-section"><div class="bg-gray-900 text-gray-300 min-h-screen p-10"><a class="text-green-700 text-xl" href="/">Home</a><h1 id="about"><a href="#about" class="heading-link-anchor"><heading-link-icon class="heading-link-icon"></heading-link-icon></a>About</h1><p>This site was incrementally generated, using the develop command!
+No need to rerun the builder on each pass through</p><p>I haven't figured out how to make it hot reload yet though</p><div class="bg-gray-800"><pre class="prism-code language-c" style="color: #d6deeb; background-color: #011627; background-color: transparent;"><div class="token-line" style="color: #d6deeb;"><span class="token macro property directive-hash" style="color: rgb(128, 203, 196);">#</span><span class="token macro property directive keyword" style="color: rgb(127, 219, 202);">include</span><span class="token macro property" style="color: rgb(128, 203, 196);"> </span><span class="token macro property expression" style="color: rgb(128, 203, 196);">stdio</span><span class="token macro property expression punctuation" style="color: rgb(199, 146, 234);">.</span><span class="token macro property expression" style="color: rgb(128, 203, 196);">h</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain" style="display: inline-block;"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain"></span><span class="token keyword" style="color: rgb(127, 219, 202);">int</span><span class="token plain"> </span><span class="token function" style="color: rgb(130, 170, 255);">main</span><span class="token punctuation" style="color: rgb(199, 146, 234);">(</span><span class="token punctuation" style="color: rgb(199, 146, 234);">)</span><span class="token plain"> </span><span class="token punctuation" style="color: rgb(199, 146, 234);">{</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain">  </span><span class="token function" style="color: rgb(130, 170, 255);">printf</span><span class="token punctuation" style="color: rgb(199, 146, 234);">(</span><span class="token string" style="color: rgb(173, 219, 103);">&quot;Hello, world!&quot;</span><span class="token punctuation" style="color: rgb(199, 146, 234);">)</span><span class="token punctuation" style="color: rgb(199, 146, 234);">;</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain">  </span><span class="token keyword" style="color: rgb(127, 219, 202);">return</span><span class="token plain"> </span><span class="token number" style="color: rgb(247, 140, 108);">0</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain"></span><span class="token punctuation" style="color: rgb(199, 146, 234);">}</span></div></pre></div></div></div>
+    <script type="module">
+    /* @jsx jsx */
+
+async function renderPage() {
+  const promises = [
+    import(window.componentPath),
+    window.wrapperComponentPath
+      ? import(window.wrapperComponentPath)
+      : undefined,
+    window.dataPath
+      ? fetch(window.dataPath).then(response => {
+          return response.json();
+        })
+      : {},
+    import("/web_modules/preact.js")
+  ];
+
+  let pageWrapper = ({ children }) => h("div", null, children);
+  const [
+    PageModule,
+    PageWrapperModule,
+    pageData,
+    { render, h }
+  ] = await Promise.all(promises);
+  const Page = PageModule.default;
+  if(PageWrapperModule) {
+    pageWrapper = PageWrapperModule.default
+  }
+
+  render(
+    h(pageWrapper, pageData, h(Page, pageData)),
+    document.getElementById("toast-page-section")
+  );
+}
+
+renderPage();
+
+</script>
+  </body>
+</html>

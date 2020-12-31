@@ -1,0 +1,39 @@
+export const meta = {
+  title: "A Post",
+  slug: "/a-post",
+};
+
+# A Post
+
+Here's some **content**!
+
+- one
+- two
+- three
+- four
+
+
+[About](/about)
+
+```js
+export default (props) => (
+    <div class="text-gray-600 min-h-screen p-10">
+        <img class="mr-6" src="https://placekitten.com/g/200/200" />
+        <div class="flex flex-col justify-center">
+            <h4 class="mt-0 mb-2 uppercase text-gray-500 tracking-widest text-xs">Playlist</h4>
+            <h1 class="mt-0 mb-2 text-white text-4xl">MIDDLE CHILD Radio</h1>
+            <p class="text-gray-600 mb-2 text-sm">With J. Cole, Quavo, Ty Dollar $ign</p>
+            <p class="text-gray-600 text-sm">Created by <a>Spotify</a> - 50 songs, 3 hr 2 min</p>
+        </div>
+        <div class="mt-6 flex justify-between">
+            <div class="flex">
+                <button class="mr-2 bg-green-500 text-green-100 block py-2 px-8 rounded-full">Play</button>
+                <button class="mr-2 border border-white block p-2 rounded-full"><img src="https://image.flaticon.com/icons/svg/2485/2485986.svg" height="25" width="25" /></button>
+                <button class="mr-2 border border-white block p-2 rounded-full">...</button>
+            </div>
+            <div class="text-gray-600 text-sm tracking-widest text-right">
+                <h5 class="mb-1">Followers</h5>
+                <p>5,055</p>
+            </div>
+        </div>
+```

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<script>
+window.componentPath = "/c-post.js";
+window.wrapperComponentPath = "/src/page-wrapper.js";
+window.dataPath = "/c-post.json";
+</script>
+<html >
+  <head>
+  <title data-react-helmet="true"></title>
+  
+  <link data-react-helmet="true" rel="stylesheet" href="/styles.css"/>
+  </head>
+  <body >
+    <div id="toast-page-section"><div class="bg-gray-900 text-gray-300 min-h-screen p-10"><a class="text-green-700 text-xl" href="/">Home</a><h1 id="c-post"><a href="#c-post" class="heading-link-anchor"><heading-link-icon class="heading-link-icon"></heading-link-icon></a>C Post</h1><p>and some content</p><ul><li>Stuff!</li><li>Whoah</li></ul><p>amazing</p><div class="bg-gray-800"><pre class="prism-code language-js" style="color: #d6deeb; background-color: #011627; background-color: transparent;"><div class="token-line" style="color: #d6deeb;"><span class="token keyword" style="color: rgb(127, 219, 202);">const</span><span class="token plain"> thing </span><span class="token operator" style="color: rgb(127, 219, 202);">=</span><span class="token plain"> </span><span class="token punctuation" style="color: rgb(199, 146, 234);">{</span><span class="token punctuation" style="color: rgb(199, 146, 234);">}</span><span class="token punctuation" style="color: rgb(199, 146, 234);">;</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain"></span><span class="token console class-name" style="color: rgb(255, 203, 139);">console</span><span class="token punctuation" style="color: rgb(199, 146, 234);">.</span><span class="token method function property-access" style="color: rgb(130, 170, 255);">log</span><span class="token punctuation" style="color: rgb(199, 146, 234);">(</span><span class="token string" style="color: rgb(173, 219, 103);">&quot;code&quot;</span><span class="token punctuation" style="color: rgb(199, 146, 234);">)</span><span class="token plain"></span></div><div class="token-line" style="color: #d6deeb;"><span class="token plain"></span><span class="token console class-name" style="color: rgb(255, 203, 139);">console</span><span class="token punctuation" style="color: rgb(199, 146, 234);">.</span><span class="token method function property-access" style="color: rgb(130, 170, 255);">log</span><span class="token punctuation" style="color: rgb(199, 146, 234);">(</span><span class="token plain">&quot;code</span><span class="token operator" style="color: rgb(127, 219, 202);">!</span><span class="token punctuation" style="color: rgb(199, 146, 234);">)</span></div></pre></div></div></div>
+    <script type="module">
+    /* @jsx jsx */
+
+async function renderPage() {
+  const promises = [
+    import(window.componentPath),
+    window.wrapperComponentPath
+      ? import(window.wrapperComponentPath)
+      : undefined,
+    window.dataPath
+      ? fetch(window.dataPath).then(response => {
+          return response.json();
+        })
+      : {},
+    import("/web_modules/preact.js")
+  ];
+
+  let pageWrapper = ({ children }) => h("div", null, children);
+  const [
+    PageModule,
+    PageWrapperModule,
+    pageData,
+    { render, h }
+  ] = await Promise.all(promises);
+  const Page = PageModule.default;
+  if(PageWrapperModule) {
+    pageWrapper = PageWrapperModule.default
+  }
+
+  render(
+    h(pageWrapper, pageData, h(Page, pageData)),
+    document.getElementById("toast-page-section")
+  );
+}
+
+renderPage();
+
+</script>
+  </body>
+</html>
